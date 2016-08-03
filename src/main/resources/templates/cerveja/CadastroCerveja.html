@@ -7,14 +7,19 @@
    </head>
    <body>
       <h1>Hello World</h1>
-      <form method="POST">
+      <form method="POST" th:object="${cerveja}">
+      
+      <div th:each="erro : ${#fields.detailedErrors()}">
+      <span th:text="${erro.message}"></span>
+      </div>
+      
          <span th:text="${mensagem}"></span> <br> 
          <label>SKU</label> <input
-            type="text" name="sku"> <br> 
+            type="text" th:field="*{sku}"> <br> 
          <label>Nome</label> <input
-            type="text" name="nome"> <br> 
+            type="text" th:field="*{nome}"> <br> 
          <label>Descrição</label> <input
-            type="text" name="descricao"> <br> 
+            type="text" th:field="*{descricao}"> <br> 
          <input type="submit"
             value="Salvar" />
       </form>
