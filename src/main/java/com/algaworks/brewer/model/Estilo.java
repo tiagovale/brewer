@@ -16,10 +16,10 @@ public class Estilo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long codigo;
 	private String nome;
-	@OneToMany(mappedBy="estilo")
+	@OneToMany(mappedBy = "estilo")
 	private List<Cerveja> cervejas;
 
 	public Long getCodigo() {
