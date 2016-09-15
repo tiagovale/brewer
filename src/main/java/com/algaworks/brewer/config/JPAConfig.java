@@ -13,12 +13,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.repository.Cervejas;
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = { Cervejas.class })
+@EnableJpaRepositories(basePackageClasses = { Cervejas.class }, enableDefaultTransactions = false)
+@EnableTransactionManagement
 public class JPAConfig {
 	@Bean
 	public DataSource dataSource() {
@@ -50,7 +52,8 @@ public class JPAConfig {
 		factory.afterPropertiesSet();
 		return factory.getObject();
 	}
-@Bean
+
+	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory);

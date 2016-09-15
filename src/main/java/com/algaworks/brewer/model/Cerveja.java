@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "cerveja")
 public class Cerveja {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotBlank(message = "SKU é obrigatório.")
