@@ -7,7 +7,7 @@
 	<artifactId>brewer</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<packaging>war</packaging>
+	<packaging>war</packaging> 
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,6 +45,8 @@
 		<!-- Spring Data JPA -->
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
 
+		<!-- Jackson - JSON -->
+		<jackson-core.version>2.7.5</jackson-core.version>
 
 
 	</properties>
@@ -190,6 +192,15 @@
 		    <artifactId>spring-data-jpa</artifactId>
 		    <version>${spring-data-jpa.version}</version>
 		</dependency>
+		
+	<!-- Jackson - JSON -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson-core.version}</version>
+		    <scope>compile</scope>
+		</dependency>
+		
 	</dependencies>
  
 
