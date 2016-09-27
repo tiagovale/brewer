@@ -18,12 +18,15 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Estilo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+
 	@NotBlank(message = "O nome é obrigatório")
-	@Size(max = 15, message = "O tamanho do nome deve estar entre 15.")
+	@Size(max = 20, message = "O tamanho do nome não pode ser maior que {max} caracteres")
 	private String nome;
+	
 	@OneToMany(mappedBy = "estilo")
 	private List<Cerveja> cervejas;
 
@@ -66,11 +69,6 @@ public class Estilo implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return nome;
 	}
 
 }
