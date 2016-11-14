@@ -24,7 +24,6 @@ import com.algaworks.brewer.repository.Cervejas;
 public class JPAConfig {
 	@Bean
 	public DataSource dataSource() {
-
 		JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
 		dataSourceLookup.setResourceRef(true);
 		return dataSourceLookup.getDataSource("jdbc/brewerDB");
