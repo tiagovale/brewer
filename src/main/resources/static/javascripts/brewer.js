@@ -29,18 +29,29 @@ Brewer.MaskPhoneNumber = (function() {
 		this.inputPhoneNumber = $('.js-phone-number');
 	}
 	MaskPhoneNumber.prototype.enable = function() {
-		var maskBehavior = function (val) {
-			  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-			},
-			options = {
-			  onKeyPress: function(val, e, field, options) {
-			      field.mask(maskBehavior.apply({}, arguments), options);
-			    }
-			};
-			this.inputPhoneNumber.mask(maskBehavior,options);
+		var maskBehavior = function(val) {
+			return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000'
+					: '(00) 0000-00009';
+		}, options = {
+			onKeyPress : function(val, e, field, options) {
+				field.mask(maskBehavior.apply({}, arguments), options);
+			}
+		};
+		this.inputPhoneNumber.mask(maskBehavior, options);
 	}
 	return MaskPhoneNumber;
 }());
+
+Brewer.MaskCep = (function() {
+	function MascaraCep() {
+		this.inputCep = $('.js-cep');
+	}
+	MascaraCep.prototype.enable = function() {
+		this.inputCep.mask('00.000-000');
+	}
+
+	return MascaraCep;
+}())
 
 $(function() {
 
@@ -49,4 +60,7 @@ $(function() {
 
 	var maskPhoneNumber = new Brewer.MaskPhoneNumber();
 	maskPhoneNumber.enable();
+
+	var maskCep = new Brewer.MaskCep();
+	maskCep.enable();
 });
