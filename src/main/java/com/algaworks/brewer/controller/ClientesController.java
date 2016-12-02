@@ -14,6 +14,7 @@ import com.algaworks.brewer.model.Cliente;
 import com.algaworks.brewer.model.TipoPessoa;
 import com.algaworks.brewer.repository.Estados;
 import com.algaworks.brewer.service.CadastroClienteService;
+import com.algaworks.brewer.service.exception.CpfCnpjClienteJaCadastradoException;
 
 @Controller
 @RequestMapping("/clientes")
@@ -32,12 +33,19 @@ public class ClientesController {
 	}
 
 	@PostMapping("/novo")
-	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result,RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return novo(cliente);
 		}
-		cadastroClienteService.salvar(cliente);
-		attributes.addFlashAttribute("mensagem","Cliente salvo com sucesso");
+
+		try {
+			cadastroClienteService.salvar(cliente);
+
+		} catch (CpfCnpjClienteJaCadastradoException e) {
+			result.rejectValue("cpfOuCnpj", e.getMessage(), e.getMessage());
+			return novo(cliente);
+		}
+		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso");
 		return new ModelAndView("redirect:/clientes/novo");
 	}
 
