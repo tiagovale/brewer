@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
@@ -21,13 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.brewer.controller.page.PageWrapper;
-import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Cidade;
-import com.algaworks.brewer.model.Origem;
-import com.algaworks.brewer.model.Sabor;
 import com.algaworks.brewer.repository.Cidades;
 import com.algaworks.brewer.repository.Estados;
-import com.algaworks.brewer.repository.filter.CervejaFilter;
 import com.algaworks.brewer.repository.filter.CidadeFilter;
 import com.algaworks.brewer.service.CadastroCidadeService;
 
@@ -50,9 +47,14 @@ public class CidadesController {
 		return mv;
 	}
 
+	@Cacheable("cidades")
 	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(
 			@RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado) {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		}
 		return cidades.findByEstadoCodigo(codigoEstado);
 	}
 
