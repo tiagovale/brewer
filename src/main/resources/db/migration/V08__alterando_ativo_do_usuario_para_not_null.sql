@@ -1,0 +1,2 @@
+ALTER TABLE usuario
+	ALTER COLUMN ativo SET DEFAULT true and NOT NULL;
