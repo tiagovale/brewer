@@ -7,10 +7,9 @@
 	font-size: 18px;
 }
 
-.bw-required > .control-label:after {
+.bw-required>.control-label:after {
 	content: "*";
 }
-
 
 /*
 ######################
@@ -30,32 +29,29 @@
 /* Upload */
 .bw-upload {
 	padding: 15px;
-	
 	border: 1px dashed #ddd;
 	border-radius: 4px;
 	background: #fafafa;
-	
 	text-align: center;
 }
 
 .bw-upload-form-file {
 	display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1px;
+	vertical-align: middle;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 1px;
 }
 
-.bw-upload-form-file > input[type=file] {
+.bw-upload-form-file>input[type=file] {
 	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    opacity: 0;
-    cursor: pointer;
-    
-    font-size: 500px;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+	font-size: 500px;
 }
 
 /* Tabela Simples */
@@ -68,10 +64,10 @@
 }
 
 .bw-tabela-simples table tr td {
-    border-top: none;
-    border-bottom: 1px solid #e7eaec;
-    padding: 10px;
-    vertical-align: middle;
+	border-top: none;
+	border-bottom: 1px solid #e7eaec;
+	padding: 10px;
+	vertical-align: middle;
 }
 
 /*
@@ -141,7 +137,8 @@
 	width: 140px;
 	text-align: right;
 }
-.table-clientes-col-cidade-estado{
+
+.table-clientes-col-cidade-estado {
 	width: 140px;
 	text-align: right;
 }
@@ -154,4 +151,14 @@
 .table-cidades-col-estado {
 	width: 140px;
 	text-align: right;
+}
+
+/*
+######################################
+# CUSTOMIZAÇÃO DE COMPONENTES
+######################################
+*/
+.checkbox input[type="checkbox"]:checked+input+label::after {
+	font-family: 'FontAwesome';
+	content: "\f00c";
 }
