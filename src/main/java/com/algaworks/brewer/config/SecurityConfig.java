@@ -42,8 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/login").permitAll().and()
-				.csrf().disable();
+		.formLogin()
+		.loginPage("/login")
+		.permitAll()
+		.and().exceptionHandling()
+		.accessDeniedPage("/403")
+		.and()
+		.csrf().disable();
 	}
 
 	@Bean
