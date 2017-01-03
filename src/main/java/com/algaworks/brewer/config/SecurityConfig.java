@@ -29,7 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 
-		web.ignoring().antMatchers("/layout/**").antMatchers("/images/**");
+		web.ignoring()
+		.antMatchers("/layout/**")
+		.antMatchers("/images/**");
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.
 		authorizeRequests()
 		.antMatchers("/cidades/nova").hasRole("CADASTRAR_CIDADE")
-		.antMatchers("/usuarios/**").hasRole("CADASTRAR_CIDADE")
+		.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().loginPage("/login").permitAll().and()
